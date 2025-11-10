@@ -26,3 +26,51 @@ body {
   margin: 0 auto;
   text-align: center;
 }
+
+.topiclist {
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+}
+
+.topicitem {
+  will-change: transform;
+  border: solid;
+  padding: 10px;
+  margin:5px;
+  width: 60%;
+  text-align: left;
+  border-radius: 5px;
+  transition: all 0.2s ease-in-out;
+  
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.topicitem:hover {
+  transform: scale(1.01);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+.new {
+  border-style: dashed;
+  filter: brightness(60%);
+  font-style: italic;
+}
+
+.bigplus {
+  display: inline-block;
+  font-size: x-large;
+  font-style: normal;
+  line-height: 2px;
+  transform: translateY(1px);
+}
+.cross {
+  display: inline-block;
+  font-style: normal;
+  transform: scale(2);
+  margin-right: 5px;
+}

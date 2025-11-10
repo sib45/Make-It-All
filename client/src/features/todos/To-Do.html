@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Make It All</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-left">Make It All</div>
+    <div class="nav-right">
+      <span>Dashboard</span>
+      <span>Login</span>
+      <span>Settings</span>
+      <span>Help</span>
+    </div>
+  </nav>
+
+  <main>
+    <div class="column" id="todo" ondragover="allowDrop(event)" ondrop="drop(event, 'todo')">
+      <h2>To-Do</h2>
+      <div class="add-card" onclick="openPopup('todo')">+ Add another card</div>
+    </div>
+
+    <div class="column" id="working" ondragover="allowDrop(event)" ondrop="drop(event, 'working')">
+      <h2>Working</h2>
+      <div class="add-card" onclick="openPopup('working')">+ Add another card</div>
+    </div>
+
+    <div class="column" id="done" ondragover="allowDrop(event)" ondrop="drop(event, 'done')">
+      <h2>Done</h2>
+      <div class="add-card" onclick="openPopup('done')">+ Add another card</div>
+    </div>
+  </main>
+
+  <div class="popup-overlay" id="popupOverlay">
+    <div class="popup">
+      <h3>Add Task</h3>
+      <label>Task Name</label>
+      <input type="text" id="taskName" placeholder="Enter task name" />
+
+      <label>Due By</label>
+      <input type="datetime-local" id="taskDue" />
+
+      <label>Add Users</label>
+      <input type="text" id="taskUsers" placeholder="Enter user names" />
+
+      <label>Priority Color</label>
+      <select id="taskColor">
+        <option value="red">High (Red)</option>
+        <option value="orange">Medium (Orange)</option>
+        <option value="green">Low (Green)</option>
+      </select>
+
+      <button onclick="saveTask()">Add Task</button>
+      <button onclick="closePopup()" style="background:#aaa;margin-left:8px;">Cancel</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,354 @@
+/* i used my own css but i asked gemini to enhance and make it look more professional so some stuff like the change in font was gemini's idea however the core principles and style is my own*/
+
+/* Import modern web font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+    /* Refined & Brighter Accent Palette */
+    --color-accent: #9f55ff;
+    --color-accent-dark: #8e48e8;
+    --color-accent-darker: #7d3ad5;
+    --color-accent-focus-ring: rgba(159, 85, 255, 0.25);
+
+    /* Glass & Shadow Palette */
+    --color-bg-glass: rgba(18, 18, 18, 0.65);
+    --color-border-glass: rgba(255, 255, 255, 0.1);
+    --color-shadow: rgba(0, 0, 0, 0.35);
+
+    /* Typography */
+    --font-main: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    /* Subtle animated gradient background for a premium feel */
+    background: linear-gradient(135deg, #0d021a, #050505 25%, #050505 75%, #1a020f);
+    background-size: 200% 200%;
+    animation: gradientFlow 20s ease-in-out infinite;
+
+    font-family: var(--font-main);
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.6;
+}
+
+.auth-page {
+    /* Use grid to perfectly center the auth container */
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+/* This element seems redundant if .auth-page is centering.
+  If it's necessary for the HTML structure, it can be left empty.
+  The new design centers .auth-container directly within .auth-page.
+*/
+.auth-background {
+    display: contents; /* Allows .auth-page to control layout */
+}
+
+.auth-container {
+    /* The "Glassmorphism" Card */
+    background-color: var(--color-bg-glass);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px); /* Safari support */
+
+    border: 1px solid var(--color-border-glass);
+    border-radius: 16px; /* Softer radius */
+    box-shadow: 0 16px 40px var(--color-shadow);
+
+    padding: 40px 50px;
+    text-align: left;
+    max-width: 480px;
+    width: 100%;
+
+    /* New slide-in animation */
+    animation: fadeInSlide 0.7s ease-out forwards;
+    opacity: 0; /* Start hidden for animation */
+}
+
+.auth-container header {
+    text-align: center;
+    margin-bottom: 40px; /* More space */
+    margin-top: 0;
+}
+
+.auth-container header h1 {
+    font-size: 2.25rem; /* Larger, more impactful */
+    margin-bottom: 12px;
+    color: #ffffff;
+    font-weight: 700;
+    margin-top: 0;
+}
+
+.auth-container header p {
+    font-size: 1rem; /* More readable */
+    color: #b0b0b0;
+    margin-bottom: 0;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 28px; /* Slightly more room */
+}
+
+.input-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-group .input-icon {
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #7a828a;
+    pointer-events: none;
+    line-height: 0;
+    z-index: 1;
+}
+
+/* --- SEAMLESS STYLES --- */
+/* 1. Combined styles for both input and select */
+.input-group input,
+.input-group > select {
+    width: 100%;
+    padding: 18px 18px 18px 50px; /* Unified padding */
+    font-size: 1rem;
+    font-family: var(--font-main); /* Use var, not var() fallback */
+
+    /* Semi-transparent "glass" inputs */
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--color-border-glass);
+    border-radius: 10px; /* Softer radius */
+    color: #ffffff;
+
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    line-height: 1.4;
+    box-sizing: border-box;
+}
+
+/* 2. Styles unique to <select> */
+.input-group > select {
+    /* Reset browser defaults */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    /* Add a custom dropdown arrow */
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23999' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right 1.25rem center;
+    background-repeat: no-repeat;
+    background-size: 1.25em;
+}
+
+/* 3. Styles unique to <input> */
+.input-group input::placeholder {
+    color: transparent; /* Label acts as placeholder */
+}
+
+/* 4. Unified label position */
+.input-group label {
+    position: absolute;
+    left: 50px; /* Matches padding */
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+    pointer-events: none;
+    transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+    background-color: transparent;
+    padding: 0 4px;
+    white-space: nowrap;
+}
+
+/* 5. Unified floating label behavior */
+.input-group input:focus + label,
+.input-group input:not(:placeholder-shown) + label,
+.input-group > select:focus + label,
+.input-group > select:valid + label {
+    top: 0px;
+    transform: translateY(-50%) scale(0.85);
+    left: 42px;
+    color: var(--color-accent);
+    /* Solid background to mask the input border */
+    background-color: rgb(22, 22, 22);
+    font-weight: 500;
+}
+
+/* 6. Unified focus state */
+.input-group input:focus,
+.input-group > select:focus {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px var(--color-accent-focus-ring);
+    outline: none;
+}
+
+/* 7. Unified Autofill styles (for input) */
+.input-group input:-webkit-autofill,
+.input-group input:-webkit-autofill:hover,
+.input-group input:-webkit-autofill:focus,
+.input-group input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 40px rgba(0, 0, 0, 0.3) inset !important;
+    -webkit-text-fill-color: #ffffff !important;
+    caret-color: #ffffff !important;
+    border-color: var(--color-border-glass);
+    font-family: var(--font-main); /* Ensure autofill matches font */
+}
+
+.input-group input:-webkit-autofill + label {
+    top: 0px;
+    transform: translateY(-50%) scale(0.85);
+    left: 42px;
+    color: var(--color-accent);
+    background-color: rgb(22, 22, 22);
+    font-weight: 500;
+}
+
+/* 8. Style the dropdown options */
+.input-group > select option {
+    background-color: #1f1f1f; /* Match the dark theme */
+    color: #ffffff;
+}
+
+/* --- End Seamless Styles --- */
+
+.password-toggle {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    color: #888888;
+    cursor: pointer;
+    padding: 5px;
+    line-height: 0;
+    outline: none;
+    transition: color 0.2s ease;
+}
+
+.password-toggle:hover svg,
+.password-toggle:focus svg {
+    color: var(--color-accent);
+}
+
+.password-toggle svg {
+    width: 22px;
+    height: 22px;
+    color: currentColor;
+}
+
+.submit-button {
+    padding: 16px;
+    font-size: 1.05rem;
+    font-weight: 600;
+
+    /* Gradient Button */
+    background: linear-gradient(90deg, var(--color-accent), var(--color-accent-dark));
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+
+    /* Base shadow */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+
+    /* Smooth transitions for all animated properties */
+    transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+
+    margin-top: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+}
+
+.submit-button:disabled {
+    background: #555;
+    color: #999;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+    filter: none;
+}
+
+.submit-button:not(:disabled):hover {
+    /* "Glow and lift" effect */
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(159, 85, 255, 0.3);
+    filter: brightness(1.1);
+}
+
+.submit-button:not(:disabled):active {
+    /* Satisfying "press" effect */
+    transform: translateY(-1px);
+    box-s_hadow: 0 4px 15px rgba(159, 85, 255, 0.2);
+    filter: brightness(0.95);
+}
+
+.outcome {
+    text-align: center;
+    font-size: 0.9rem;
+    color: #ff5c5c; /* Brighter red */
+    margin-top: 15px;
+    min-height: 1.2em;
+    line-height: 1.4;
+}
+
+.outcome.outcome-success {
+    color: #30db63; /* Added a success class */
+}
+
+.form-footer {
+    margin-top: 35px;
+    text-align: center;
+    font-size: 0.88rem;
+    color: #a0a0a0;
+}
+
+.form-footer a {
+    color: var(--color-accent);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.form-footer a:hover {
+    text-decoration: underline;
+    color: var(--color-accent-dark);
+}
+
+/* Animation for the body background */
+@keyframes gradientFlow {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Animation for the card entrance */
+@keyframes fadeInSlide {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.98);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
