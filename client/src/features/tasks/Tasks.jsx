@@ -228,7 +228,7 @@ export default function ProjectTasks() {
               <div id={"create-task-card"} className={"task-card"}>
                 <h3>Create New Task</h3>
                 <div>
-                  <label htmlFor="new-task-title">Title: *</label>
+                  {/*<label htmlFor="new-task-title">Title: *</label>*/}
                   <input
                       type="text"
                       id="new-task-title"
@@ -237,7 +237,7 @@ export default function ProjectTasks() {
                   />
                 </div>
                 <div>
-                  <label htmlFor="new-task-description">Description:</label>
+                  {/*<label htmlFor="new-task-description">Description:</label>*/}
                   <textarea
                       id="new-task-description"
                       placeholder="Task description"
@@ -245,7 +245,7 @@ export default function ProjectTasks() {
                   />
                 </div>
                 <div>
-                  <label htmlFor="new-task-assigned">Assigned To: *</label>
+                  {/*<label htmlFor="new-task-assigned">Assigned To: *</label>*/}
                   <select id="new-task-assigned" required>
                     <option value="">Select a user</option>
                     {users.map((user) => (
