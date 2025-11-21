@@ -1,10 +1,15 @@
 # Dependencies
-node_modules/
+node_modules*/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 package-lock.json
 bun.lock
+
+# Dockerfile production
+Dockerfile
+*.zip
+
 
 # Build outputs
 dist/
